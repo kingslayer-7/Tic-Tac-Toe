@@ -4,10 +4,9 @@ using namespace std;
 #define COMPUTER 1 
 #define HUMAN 2 
 
-// Computer will move with 'O' 
-// and human with 'X' 
-#define COMPUTERMOVE 'O' 
-#define HUMANMOVE 'X' 
+
+#define COMPUTERMOVE 'O' //computer moves with 'O'
+#define HUMANMOVE 'X' 	//human moves with 'X'
 
 void showBoard(char board[][3]) 
 { 
