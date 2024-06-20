@@ -10,24 +10,23 @@ using namespace std;
 
 void showBoard(char board[][3]) 
 { 
-	
-	printf("\t\t\t %c | %c | %c \n", board[0][0], board[0][1], board[0][2]); 
-	printf("\t\t\t-----------\n"); 
-	printf("\t\t\t %c | %c | %c \n", board[1][0], board[1][1], board[1][2]); 
-	printf("\t\t\t-----------\n"); 
-	printf("\t\t\t %c | %c | %c \n\n", board[2][0], board[2][1], board[2][2]);  
+	cout << "\t\t\t " << board[0][0] << " | " << board[0][1] << " | " << board[0][2] << " \n"; 
+	cout << "\t\t\t-----------\n"; 
+	cout << "\t\t\t " << board[1][0] << " | " << board[1][1] << " | " << board[1][2] << " \n"; 
+	cout << "\t\t\t-----------\n"; 
+	cout << "\t\t\t " << board[2][0] << " | " << board[2][1] << " | " << board[2][2] << " \n\n";  
 } 
 
 
 void showInstructions() 
 { 
-	printf("\nChoose a cell numbered from 1 to 9 as below and play\n\n"); 
+	cout << "\nChoose a cell numbered from 1 to 9 as below and play\n\n"; 
 	
-	printf("\t\t\t 1 | 2 | 3 \n"); 
-	printf("\t\t\t-----------\n"); 
-	printf("\t\t\t 4 | 5 | 6 \n"); 
-	printf("\t\t\t-----------\n"); 
-	printf("\t\t\t 7 | 8 | 9 \n\n"); 
+	cout << "\t\t\t 1 | 2 | 3 \n"; 
+	cout << "\t\t\t-----------\n"; 
+	cout << "\t\t\t 4 | 5 | 6 \n"; 
+	cout << "\t\t\t-----------\n"; 
+	cout << "\t\t\t 7 | 8 | 9 \n\n"; 
 } 
 
 
@@ -46,9 +45,9 @@ void initialise(char board[][3])
 void declareWinner(int whoseTurn) 
 { 
 	if (whoseTurn == COMPUTER) 
-		printf("COMPUTER has won\n"); 
+		cout << "COMPUTER has won\n"; 
 	else
-		printf("HUMAN has won\n"); 
+		cout << "HUMAN has won\n"; 
 } 
 
 bool rowCrossed(char board[][3]) 
@@ -204,7 +203,7 @@ void playTicTacToe(int whoseTurn)
 			x = n / 3;
 			y = n % 3;
 			board[x][y] = COMPUTERMOVE; 
-			printf("COMPUTER has put a %c in cell %d\n\n", COMPUTERMOVE, n+1);
+			cout << "COMPUTER has put a " << COMPUTERMOVE << " in cell " << n+1 << "\n\n";
 			showBoard(board);
 			moveIndex ++; 
 			whoseTurn = HUMAN;
@@ -212,37 +211,37 @@ void playTicTacToe(int whoseTurn)
 		
 		else if (whoseTurn == HUMAN) 
 		{
-			printf("You can insert in the following positions : ");
+			cout << "You can insert in the following positions : ";
 			for(int i=0; i<3; i++)
 				for (int j = 0; j < 3; j++)
 					if (board[i][j] == ' ')
-						printf("%d ", (i * 3 + j) + 1);
-			printf("\n\nEnter the position = ");
-			scanf("%d",&n);
+						cout << (i * 3 + j) + 1 << " ";
+			cout << "\n\nEnter the position = ";
+			cin >> n;
 			n--;
 			x = n / 3;
 			y = n % 3; 
 			if(board[x][y] == ' ' && n<9 && n>=0)
 			{
 				board[x][y] = HUMANMOVE; 
-				printf ("\nHUMAN has put a %c in cell %d\n\n", HUMANMOVE, n+1); 
+				cout << "\nHUMAN has put a " << HUMANMOVE << " in cell " << n+1 << "\n\n"; 
 				showBoard(board); 
 				moveIndex ++; 
 				whoseTurn = COMPUTER;
 			}
 			else if(board[x][y] != ' ' && n<9 && n>=0)
 			{
-				printf("\nPosition is occupied, select any one place from the available places\n\n");
+				cout << "\nPosition is occupied, select any one place from the available places\n\n";
 			}
 			else if(n<0 || n>8)
 			{
-				printf("Invalid position\n");
+				cout << "Invalid position\n";
 			}
 		} 
 	} 
 
 	if (gameOver(board) == false && moveIndex == 3 * 3) 
-		printf("It's a draw\n"); 
+		cout << "It's a draw\n"; 
 	else
 	{ 
 		if (whoseTurn == COMPUTER) 
@@ -256,24 +255,24 @@ void playTicTacToe(int whoseTurn)
 
 int main() 
 { 
-	printf("\n-------------------------------------------------------------------\n\n");
-	printf("\t\t\t Tic-Tac-Toe\n"); 
-	printf("\n-------------------------------------------------------------------\n\n");
+	cout << "\n-------------------------------------------------------------------\n\n";
+	cout << "\t\t\t Tic-Tac-Toe\n"; 
+	cout << "\n-------------------------------------------------------------------\n\n";
 	char cont='y';
 	do {
 		char choice;
-	 	printf("Do you want to start first?(y/n) : ");
-	 	scanf(" %c", &choice);
+	 	cout << "Do you want to start first?(y/n) : ";
+	 	cin >> choice;
 
 		if(choice=='n')
 			playTicTacToe(COMPUTER);
 		else if(choice=='y')
 			playTicTacToe(HUMAN);
 		else
-			printf("Invalid choice\n"); 
+			cout << "Invalid choice\n"; 
         
-		printf("\nDo you want to quit(y/n) : ");
-       		scanf(" %c", &cont);
+		cout << "\nDo you want to quit(y/n) : ";
+       		cin >> cont;
 	} while(cont=='n');
 	return (0); 
-} 
+}
